@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#061b46">
+<title>Our Work Video | Shree Balaji Insurance & Finance Hub</title>
+<style>
+:root{--navy:#061b46;--blue:#0b57d0;--gold:#f4bd2b;--bg:#eef5ff;--ink:#14223b;--muted:#60708c}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(135deg,#eef5ff,#fffaf0);color:var(--ink)}
+body{display:flex;flex-direction:column}.top{background:var(--navy);color:#fff;padding:14px 18px}.top-inner{width:min(1100px,94%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-weight:900}.back{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);padding:9px 14px;border-radius:10px;font-weight:800}.wrap{width:min(1100px,94%);margin:0 auto;padding:28px 0 44px}.card{background:#fff;border:1px solid #d8e4f4;border-radius:24px;box-shadow:0 16px 40px rgba(8,36,87,.12);padding:18px}.title{margin:0 0 6px;color:var(--navy);font-size:clamp(24px,4vw,38px)}.sub{margin:0 0 18px;color:var(--muted)}.video-box{background:#06101f;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2)}video{display:block;width:100%;height:auto;max-height:78vh;background:#000;object-fit:contain}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 15px;border-radius:11px;text-decoration:none;font-weight:850;border:1px solid #c9d8eb;background:#fff;color:var(--navy);cursor:pointer}.btn-primary{background:linear-gradient(135deg,var(--blue),#0a8de8);color:#fff;border-color:transparent}.note{margin-top:16px;padding:13px 15px;border-radius:12px;background:#f5f8ff;color:#53627c;font-size:13px}.error{display:none;padding:25px;text-align:center;color:#9b1c1c;background:#fff0f0;border-radius:15px}
+@media(max-width:600px){.top-inner{align-items:flex-start}.back{padding:8px 10px;font-size:13px}.wrap{padding-top:16px}.card{padding:12px;border-radius:18px}video{max-height:70vh}.title{font-size:25px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><div class="brand">Shree Balaji Insurance & Finance Hub</div><a class="back" href="index.html#gallery">← Back to Our Work</a></div></header>
+<main class="wrap"><section class="card">
+<h1 class="title" id="videoTitle">Our Work Video</h1>
+<p class="sub">पूरा वीडियो यहाँ सीधे खुलेगा — केवल फोटो/थंबनेल नहीं। Play, Pause और Full Screen controls उपलब्ध हैं।</p>
+<div class="video-box"><video id="player" controls playsinline preload="metadata"></video></div>
+<div class="actions"><button class="btn btn-primary" id="fullBtn" type="button">⛶ Full Screen</button><a class="btn" href="index.html#gallery">← Back to Website</a></div>
+<div class="note">वीडियो मोबाइल और कंप्यूटर दोनों पर responsive तरीके से दिखेगा। Full Screen के लिए ऊपर का बटन या वीडियो player का fullscreen control दबाएँ।</div>
+<div class="error" id="error">वीडियो नहीं मिला। कृपया वेबसाइट के Our Work सेक्शन से वीडियो खोलें।</div>
+</section></main>
+<script>
+const videos={
+'VID-20260917-WA0033.mp4':'Our Work Video 1',
+'VID-20260917-WA0025(1).mp4':'Our Work Video 2',
+'Media_iwm_1783159112121.mp4':'Our Work Video 3',
+'Media_iwm_1783159080088.mp4':'Our Work Video 4',
+'Media_iwm_1783159019265.mp4':'Our Work Video 5',
+'Media_iwm_1782623854910.mp4':'Our Work Video 6',
+'Media_iwm_1782623828516.mp4':'Our Work Video 7',
+'Media_iwm_1782623581768.mp4':'Our Work Video 8',
+'Media_iwm_1782623405200.mp4':'Our Work Video 9',
+'Media_iwm_1782623094814.mp4':'Our Work Video 10'
+};
+const params=new URLSearchParams(location.search), name=params.get('video'), player=document.getElementById('player'), title=document.getElementById('videoTitle'), error=document.getElementById('error');
+if(name && videos[name]){ title.textContent=videos[name]; player.src='assets/videos/'+encodeURIComponent(name); player.poster='assets/video-posters/'+encodeURIComponent(name.replace(/\.mp4$/i,'.jpg')); document.title=videos[name]+' | Shree Balaji Insurance & Finance Hub'; }
+else{player.style.display='none';document.querySelector('.actions').style.display='none';error.style.display='block'}
+document.getElementById('fullBtn').addEventListener('click',()=>{if(player.requestFullscreen) player.requestFullscreen(); else if(player.webkitEnterFullscreen) player.webkitEnterFullscreen();});
+</script>
+</body></html>

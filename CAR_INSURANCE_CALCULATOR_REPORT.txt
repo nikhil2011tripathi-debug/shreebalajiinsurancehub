@@ -1,0 +1,31 @@
+CAR INSURANCE PREMIUM CALCULATOR — IMPLEMENTATION REPORT
+Project: Shree Balaji Insurance & Finance Hub
+
+PLACEMENT
+- Added directly after the existing All Vehicle Third Party Premium Chart and before Insurance Services.
+
+INCLUDED
+- Responsive, colorful calculator layout consistent with a professional insurance/finance UI.
+- Brand selection cards and model lists for the listed brands plus an Other option.
+- Model dropdown stays disabled until a brand is selected; changing brands resets the model list.
+- Fuel, state, city/RTO text-search suggestions, registration year, insurance type, policy status, optional NCB/claim history, and add-on selection fields.
+- Required-field validation and a WhatsApp quote message using business number 9136365139.
+- Existing website sections and assets retained in the ZIP; no existing section was intentionally removed for this addition.
+
+IMPORTANT LIMITATIONS / MISSING ASSETS
+- The current ZIP did not contain verified original logo assets for all car manufacturers. To avoid using incorrect or fake marks, the selector currently uses clear text-name cards. A Missing Assets list of brands requiring official SVG/PNG logos is below.
+- The existing website bundle does not provide a verified live insurer quotation API or a current, validated rate dataset for vehicle-specific Own Damage, IDV, NCB, add-ons, GST and insurer pricing. Therefore the calculator does NOT invent a rupee premium or show ₹0. It prepares the selected details for an exact quote via WhatsApp instead.
+- City suggestions include commonly requested cities, not a complete authoritative India-wide RTO database. RTO codes are not asserted unless verified.
+- Fuel options are general options and are not dynamically verified against each specific variant/model. Confirm the exact fuel and variant with the insurer/RC before quoting.
+
+MISSING OFFICIAL CAR LOGO ASSETS TO SOURCE/VERIFY
+Maruti Suzuki, Hyundai, Tata Motors, Mahindra (automotive logo), Honda, Toyota, Kia, MG Motor, Renault, Nissan, Volkswagen, Škoda, BMW, Mercedes-Benz, Audi, Jeep, BYD, Citroën, Isuzu, Force Motors, Volvo, Lexus, Porsche, MINI, and any additional Indian car brands.
+
+CHECKS PERFORMED
+- Confirmed insertion order in index.html: vehicle-premium-chart -> car-insurance-calculator -> insurance.
+- Checked the new inline calculator JavaScript syntax with Node.js.
+- ZIP archive integrity check performed after packaging.
+
+NOT PERFORMED
+- No live browser/device visual test or real insurer quote test was possible in this packaging step.
+- No claim is made that insurer prices are live or final.
