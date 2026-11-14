@@ -1,0 +1,15 @@
+SHREE BALAJI INSURANCE & FINANCE HUB — IMAGE PATH AUDIT
+Date: 2026-11-14
+
+Changes applied to the uploaded ZIP only:
+1. Removed the edge-connected checkerboard background from the Get a Quote image and saved it as a transparent PNG. Original retained as quotation-original-checkerboard.png.
+2. Added URL-safe copies of the ChallanPay and E-Challan interface images; updated index.html to use the no-space filenames. Original files retained.
+3. Renamed the partner heading to “Finance Leading Partners”.
+4. Added explicit visibility/contain rules for quick-card, partner-logo and E-Challan images on desktop/mobile.
+
+Static checks:
+- All referenced local image paths in HTML/CSS/JS were checked against the extracted folder.
+- All image files were opened/verified by the image decoder.
+- ZIP archive integrity is checked after packaging.
+
+Note: This validates the files and local paths. It does not constitute a live GitHub Pages deployment test.
