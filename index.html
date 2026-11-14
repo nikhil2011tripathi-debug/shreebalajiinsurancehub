@@ -959,6 +959,57 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
+<style id="balaji-final-carousel-csc-travel-polish">
+/* Final polish: continuous, gap-free product carousels and larger CSC cards */
+#insurance .grid, #finance .grid{
+  display:block!important; overflow:hidden!important; width:100%!important;
+  position:relative!important; padding:6px 2px 18px!important;
+}
+#insurance .continuous-track, #finance .continuous-track{
+  display:flex!important; flex-wrap:nowrap!important; align-items:stretch!important;
+  gap:18px!important; width:max-content!important; min-width:max-content!important;
+  animation:balajiContinuousMove var(--balaji-duration,38s) linear infinite!important;
+  will-change:transform!important;
+}
+#insurance .continuous-track{--balaji-duration:42s}
+#finance .continuous-track{--balaji-duration:48s}
+#insurance .continuous-track:hover, #finance .continuous-track:hover{animation-play-state:paused!important}
+#insurance .continuous-track>.card, #finance .continuous-track>.card{
+  display:flex!important; flex:0 0 clamp(230px,25vw,285px)!important;
+  width:clamp(230px,25vw,285px)!important; min-width:clamp(230px,25vw,285px)!important;
+  max-width:clamp(230px,25vw,285px)!important; opacity:1!important; visibility:visible!important;
+  transform:none!important; animation:none!important;
+}
+@keyframes balajiContinuousMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){#insurance .continuous-track,#finance .continuous-track{animation:none!important;overflow-x:auto!important}}
+/* CSC service tiles: larger logos, readable black labels and comfortable spacing */
+.csc-main-grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(205px,1fr))!important;gap:17px!important;align-items:stretch!important}
+.csc-main-btn{min-height:218px!important;padding:17px 14px!important;gap:11px!important;border-radius:20px!important}
+.csc-main-logo{height:126px!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.csc-main-logo img{height:118px!important;max-height:118px!important;max-width:96%!important;width:auto!important;object-fit:contain!important}
+.csc-main-btn b{font-size:16px!important;line-height:1.25!important;color:#101828!important;font-weight:950!important}
+.csc-main-btn small{font-size:12px!important;line-height:1.35!important;color:#202b3a!important;opacity:1!important;font-weight:750!important}
+.csc-main-btn.csc-extra12 b,.csc-main-btn.csc-extra12 small{color:#101828!important}
+.csc-panel,.csc-nested-panel{color:#172033!important}
+.csc-panel h3,.csc-panel h4,.csc-panel p,.csc-panel a,.csc-panel button{color:inherit}
+@media(max-width:700px){
+ .csc-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+ .csc-main-btn{min-height:185px!important;padding:12px 8px!important}
+ .csc-main-logo{height:100px!important}
+ .csc-main-logo img{height:94px!important;max-height:94px!important}
+ .csc-main-btn b{font-size:14px!important}
+ .csc-main-btn small{font-size:10px!important}
+}
+/* Restore sharp travel/tourism artwork: no blur, opacity or filter effects */
+#travel-tourism img,.travel-section img,.travel-hero img,.travel-banner img,.travel-visual-banner img{
+ filter:none!important; opacity:1!important; image-rendering:auto!important;
+ -webkit-filter:none!important; transform:none!important;
+}
+#travel-tourism .travel-hero img,#travel-tourism .travel-banner img,
+.travel-section .travel-hero img,.travel-section .travel-banner img{
+ object-fit:contain!important; object-position:center!important;
+}
+</style>
 </head>
 <body>
 <div class="topbar"><div class="container"><span>IRDAI • ★ • IRDA द्वारा प्रमाणित वाहन बीमा केंद्र</span><span>📞 Mobile: +91-9136365139 • WhatsApp: +91-9136365139</span></div></div>
@@ -2625,6 +2676,33 @@ html{scroll-behavior:auto!important}
 .echallan-media img{display:block!important;visibility:visible!important;opacity:1!important;max-width:100%!important;max-height:300px!important;width:auto!important;height:auto!important;object-fit:contain!important;object-position:center!important}
 @media(max-width:600px){.user-quick-card img{width:82px!important;height:82px!important;flex-basis:82px!important}.echallan-media img{max-height:230px!important}}
 </style>
+
+
+<script id="balaji-continuous-product-carousels">
+(function(){
+ function setupCarousel(sectionId){
+   var section=document.getElementById(sectionId);
+   if(!section) return;
+   var grid=section.querySelector('.grid');
+   if(!grid || grid.querySelector('.continuous-track')) return;
+   var cards=Array.prototype.filter.call(grid.children,function(el){return el.classList && el.classList.contains('card');});
+   if(cards.length<2) return;
+   var track=document.createElement('div');
+   track.className='continuous-track';
+   cards.forEach(function(card){track.appendChild(card);});
+   cards.forEach(function(card){
+     var clone=card.cloneNode(true);
+     clone.setAttribute('aria-hidden','true');
+     clone.querySelectorAll('a,button').forEach(function(el){el.setAttribute('tabindex','-1');});
+     track.appendChild(clone);
+   });
+   grid.appendChild(track);
+ }
+ function init(){setupCarousel('insurance');setupCarousel('finance');}
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
+ else init();
+})();
+</script>
 
 </body>
 </html>
