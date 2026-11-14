@@ -952,64 +952,77 @@ section, main, .section, .section-wrap { min-width:0; }
 @media(max-width:600px){.csc-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.csc-main-btn{min-height:142px!important;padding:10px 7px!important}.csc-main-logo{height:66px!important}.csc-main-logo img{height:62px!important;max-height:62px!important}.csc-main-btn b{font-size:13px!important}}
 @media(prefers-reduced-motion:reduce){#insurance .grid.service-auto-track,#finance .grid.product-auto-track{animation:none!important;overflow-x:auto!important}}
 </style>
-<script id="single-seamless-insurance-finance-track">
-document.addEventListener('DOMContentLoaded',function(){
- function setup(sectionSelector,gridSelector,viewportClass,trackClass){var section=document.querySelector(sectionSelector);if(!section)return;var grid=section.querySelector(gridSelector);if(!grid||grid.dataset.finalLoopReady==='1')return;grid.dataset.finalLoopReady='1';var originals=Array.from(grid.children);if(originals.length<2)return;var viewport=document.createElement('div');viewport.className=viewportClass;grid.parentNode.insertBefore(viewport,grid);viewport.appendChild(grid);grid.classList.add(trackClass);originals.forEach(function(card){var clone=card.cloneNode(true);clone.setAttribute('aria-hidden','true');clone.querySelectorAll('a,button,input,select,textarea').forEach(function(el){el.setAttribute('tabindex','-1');});grid.appendChild(clone);});var pause=function(){grid.style.animationPlayState='paused';},play=function(){if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)grid.style.animationPlayState='running';};viewport.addEventListener('mouseenter',pause);viewport.addEventListener('mouseleave',play);viewport.addEventListener('focusin',pause);viewport.addEventListener('focusout',play);viewport.addEventListener('touchstart',pause,{passive:true});viewport.addEventListener('touchend',function(){setTimeout(play,1200);},{passive:true});}
- setup('#insurance','.grid','service-auto-viewport','service-auto-track');setup('#finance','.grid','product-auto-viewport','product-auto-track');
-});
-</script>
 
-<style id="balaji-final-carousel-csc-travel-polish">
-/* Final polish: continuous, gap-free product carousels and larger CSC cards */
-#insurance .grid, #finance .grid{
-  display:block!important; overflow:hidden!important; width:100%!important;
-  position:relative!important; padding:6px 2px 18px!important;
+
+
+
+<style id="verified-carousel-and-image-fit-fix">
+/* The carousel viewport is separate from the moving track. */
+#insurance .service-auto-viewport,
+#finance .product-auto-viewport{
+  display:block!important; width:100%!important; max-width:100%!important;
+  overflow:hidden!important; position:relative!important; contain:paint!important;
+  padding:10px 2px 22px!important; box-sizing:border-box!important;
 }
-#insurance .continuous-track, #finance .continuous-track{
-  display:flex!important; flex-wrap:nowrap!important; align-items:stretch!important;
-  gap:18px!important; width:max-content!important; min-width:max-content!important;
-  animation:balajiContinuousMove var(--balaji-duration,38s) linear infinite!important;
+#insurance .grid.service-auto-track,
+#finance .grid.product-auto-track{
+  display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important;
+  align-items:stretch!important; justify-content:flex-start!important;
+  width:max-content!important; min-width:max-content!important; max-width:none!important;
+  gap:18px!important; overflow:visible!important; padding:0!important; margin:0!important;
+  animation:sbVerifiedInfinite 48s linear infinite!important;
+  animation-play-state:running!important; transform:translate3d(0,0,0);
   will-change:transform!important;
 }
-#insurance .continuous-track{--balaji-duration:42s}
-#finance .continuous-track{--balaji-duration:48s}
-#insurance .continuous-track:hover, #finance .continuous-track:hover{animation-play-state:paused!important}
-#insurance .continuous-track>.card, #finance .continuous-track>.card{
-  display:flex!important; flex:0 0 clamp(230px,25vw,285px)!important;
-  width:clamp(230px,25vw,285px)!important; min-width:clamp(230px,25vw,285px)!important;
-  max-width:clamp(230px,25vw,285px)!important; opacity:1!important; visibility:visible!important;
-  transform:none!important; animation:none!important;
+#insurance .grid.service-auto-track>.card,
+#finance .grid.product-auto-track>.card{
+  display:flex!important; flex:0 0 clamp(235px,26vw,310px)!important;
+  width:clamp(235px,26vw,310px)!important;
+  min-width:clamp(235px,26vw,310px)!important; max-width:clamp(235px,26vw,310px)!important;
+  opacity:1!important; visibility:visible!important; transform:none!important;
+  margin:0!important;
 }
-@keyframes balajiContinuousMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){#insurance .continuous-track,#finance .continuous-track{animation:none!important;overflow-x:auto!important}}
-/* CSC service tiles: larger logos, readable black labels and comfortable spacing */
-.csc-main-grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(205px,1fr))!important;gap:17px!important;align-items:stretch!important}
-.csc-main-btn{min-height:218px!important;padding:17px 14px!important;gap:11px!important;border-radius:20px!important}
-.csc-main-logo{height:126px!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important}
-.csc-main-logo img{height:118px!important;max-height:118px!important;max-width:96%!important;width:auto!important;object-fit:contain!important}
-.csc-main-btn b{font-size:16px!important;line-height:1.25!important;color:#101828!important;font-weight:950!important}
-.csc-main-btn small{font-size:12px!important;line-height:1.35!important;color:#202b3a!important;opacity:1!important;font-weight:750!important}
-.csc-main-btn.csc-extra12 b,.csc-main-btn.csc-extra12 small{color:#101828!important}
-.csc-panel,.csc-nested-panel{color:#172033!important}
-.csc-panel h3,.csc-panel h4,.csc-panel p,.csc-panel a,.csc-panel button{color:inherit}
+@keyframes sbVerifiedInfinite{
+  0%{transform:translate3d(0,0,0)}
+  100%{transform:translate3d(-50%,0,0)}
+}
+#insurance .service-auto-viewport:hover .service-auto-track,
+#finance .product-auto-viewport:hover .product-auto-track{animation-play-state:paused!important}
 @media(max-width:700px){
- .csc-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
- .csc-main-btn{min-height:185px!important;padding:12px 8px!important}
- .csc-main-logo{height:100px!important}
- .csc-main-logo img{height:94px!important;max-height:94px!important}
- .csc-main-btn b{font-size:14px!important}
- .csc-main-btn small{font-size:10px!important}
+ #insurance .grid.service-auto-track>.card,#finance .grid.product-auto-track>.card{
+  flex-basis:78vw!important;width:78vw!important;min-width:78vw!important;max-width:78vw!important
+ }
 }
-/* Restore sharp travel/tourism artwork: no blur, opacity or filter effects */
-#travel-tourism img,.travel-section img,.travel-hero img,.travel-banner img,.travel-visual-banner img{
- filter:none!important; opacity:1!important; image-rendering:auto!important;
- -webkit-filter:none!important; transform:none!important;
+@media(prefers-reduced-motion:reduce){
+ #insurance .grid.service-auto-track,#finance .grid.product-auto-track{animation:none!important}
+ #insurance .service-auto-viewport,#finance .product-auto-viewport{overflow-x:auto!important}
 }
-#travel-tourism .travel-hero img,#travel-tourism .travel-banner img,
-.travel-section .travel-hero img,.travel-section .travel-banner img{
- object-fit:contain!important; object-position:center!important;
+/* Keep image artwork fully inside cards, with no crop or blur filters. */
+#insurance .card .pic,#finance .card .pic{
+ height:205px!important; min-height:205px!important; overflow:hidden!important;
+ display:flex!important; align-items:center!important; justify-content:center!important;
+ background:#fff!important;
+}
+#insurance .card .pic img,#finance .card .pic img{
+ display:block!important; width:100%!important; height:100%!important;
+ max-width:100%!important; max-height:100%!important; object-fit:contain!important;
+ object-position:center center!important; filter:none!important; opacity:1!important;
+ transform:none!important; image-rendering:auto!important;
+}
+/* CSC tile sizing: larger logos and readable labels, preserving card margins. */
+.csc-main-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))!important;gap:16px!important}
+.csc-main-btn{min-height:205px!important;padding:15px!important}
+.csc-main-logo{height:112px!important}
+.csc-main-logo img{height:106px!important;max-height:106px!important;max-width:96%!important;object-fit:contain!important}
+.csc-main-btn b,.csc-main-btn small{color:#111827!important}
+@media(max-width:700px){
+ .csc-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .csc-main-btn{min-height:175px!important;padding:10px!important}
+ .csc-main-logo{height:90px!important}
+ .csc-main-logo img{height:86px!important;max-height:86px!important}
 }
 </style>
+
 </head>
 <body>
 <div class="topbar"><div class="container"><span>IRDAI • ★ • IRDA द्वारा प्रमाणित वाहन बीमा केंद्र</span><span>📞 Mobile: +91-9136365139 • WhatsApp: +91-9136365139</span></div></div>
@@ -2678,29 +2691,54 @@ html{scroll-behavior:auto!important}
 </style>
 
 
-<script id="balaji-continuous-product-carousels">
+
+
+
+<script id="verified-infinite-carousel-init">
 (function(){
- function setupCarousel(sectionId){
-   var section=document.getElementById(sectionId);
-   if(!section) return;
-   var grid=section.querySelector('.grid');
-   if(!grid || grid.querySelector('.continuous-track')) return;
-   var cards=Array.prototype.filter.call(grid.children,function(el){return el.classList && el.classList.contains('card');});
-   if(cards.length<2) return;
-   var track=document.createElement('div');
-   track.className='continuous-track';
-   cards.forEach(function(card){track.appendChild(card);});
-   cards.forEach(function(card){
-     var clone=card.cloneNode(true);
-     clone.setAttribute('aria-hidden','true');
-     clone.querySelectorAll('a,button').forEach(function(el){el.setAttribute('tabindex','-1');});
-     track.appendChild(clone);
-   });
-   grid.appendChild(track);
+ function initCarousel(sectionId,viewportClass,trackClass){
+  var section=document.getElementById(sectionId);
+  if(!section || section.dataset.verifiedCarousel==='1') return;
+  var grid=section.querySelector('.grid');
+  if(!grid) return;
+  var originals=Array.prototype.slice.call(grid.children).filter(function(el){
+    return el.classList && el.classList.contains('card');
+  });
+  if(originals.length<2) return;
+  section.dataset.verifiedCarousel='1';
+  var viewport=document.createElement('div');
+  viewport.className=viewportClass;
+  grid.parentNode.insertBefore(viewport,grid);
+  viewport.appendChild(grid);
+  grid.classList.add(trackClass);
+  /* Remove any prior cloned cards, then duplicate the complete original sequence once. */
+  Array.prototype.slice.call(grid.children).forEach(function(el){
+    if(el.dataset.carouselClone==='1') el.remove();
+  });
+  originals.forEach(function(card){
+    var clone=card.cloneNode(true);
+    clone.dataset.carouselClone='1';
+    clone.setAttribute('aria-hidden','true');
+    clone.querySelectorAll('a,button,input,select,textarea').forEach(function(el){
+      el.setAttribute('tabindex','-1');
+    });
+    grid.appendChild(clone);
+  });
+  /* Start animation only after layout has measured the duplicated track. */
+  grid.style.animation='none';
+  void grid.offsetWidth;
+  grid.style.animation='';
+  grid.style.animationPlayState='running';
+  viewport.addEventListener('mouseenter',function(){grid.style.animationPlayState='paused';});
+  viewport.addEventListener('mouseleave',function(){grid.style.animationPlayState='running';});
  }
- function init(){setupCarousel('insurance');setupCarousel('finance');}
- if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
- else init();
+ function run(){
+  initCarousel('insurance','service-auto-viewport','service-auto-track');
+  initCarousel('finance','product-auto-viewport','product-auto-track');
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+ else run();
+ window.addEventListener('load',run,{once:true});
 })();
 </script>
 
